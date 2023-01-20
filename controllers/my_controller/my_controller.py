@@ -33,9 +33,6 @@ imu.enable(timestep)
 
 keyboard.enable(timestep)
 
-ds = robot.getDevice("ds")
-ds.enable(timestep)
-
 def move(left_speed,right_speed):
     wheel_motor1.setVelocity(right_speed)
     wheel_motor2.setVelocity(right_speed)  
@@ -45,11 +42,9 @@ def move(left_speed,right_speed):
 while robot.step(timestep) != -1:
 
     angle=imu.getRollPitchYaw()
-    
-    ds_value= ds.getValue()
-    
     yaw_current= round(math.degrees(angle[2]))+180
     print("currently facing towards "+str(yaw_current)+" degrees")
+    
     key_pressed= keyboard.getKey()
     
     if(key_pressed== 315):
